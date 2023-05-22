@@ -1,10 +1,11 @@
 require("dotenv").config();
 const cors = require("cors");
-const router = require("./router");
-
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
+
+const router = require("./router");
 
 app.use(express.json());
 app.use(cors());
@@ -16,9 +17,10 @@ router.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-function start() {
+async function start() {
   try {
-     app.listen(PORT, () => {
+    await mongoose.connect(process.env.DB_URL);
+    app.listen(PORT, () => {
       console.log(`Server has been started on port: ${PORT}`);
     });
   } catch (e) {
