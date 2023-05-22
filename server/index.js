@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
 function start() {
   app.listen(process.env.PORT, () => {
     console.log(`Server has been started on port: ${process.env.PORT}`);
+    console.log("love Milus")
   });
 };
 
