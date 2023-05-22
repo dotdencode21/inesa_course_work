@@ -1,16 +1,13 @@
 <template>
   <div class="background"></div>
-  <div class="home">Home</div>
+  <div class="icon"></div>
   <div class="yellow-block"></div>
-  <div class="image"></div>
+  <div class="car"></div>
 </template>
 <script>
 export default {};
 </script>
 <style scoped>
-.home{
-  color: #e60f0f;
-}
 .background {
   position: fixed;
   top: 0;
@@ -22,6 +19,17 @@ export default {};
   background-position: bottom;
   z-index: -1;
 }
+.icon {
+  position: fixed;
+  top: 2em;
+  left: 2em;
+  width: 200px; /* Измените размеры изображения на подходящие для вашего случая */
+  height: 50px;
+  background-image: url('public/logo.png');
+  background-size: cover;
+  background-repeat: round;
+  z-index: 1;
+}
 .yellow-block {
   position: fixed;
   top: 500px;
@@ -29,12 +37,12 @@ export default {};
   height: 500px;
   background-color: rgb(255, 217, 0);
 }
-.image {
+.car {
   position: fixed;
-  top: 16em;
+  top: 14em;
   right: 2em;
   width: 900px;
-  height: 402px;
+  height: 408px;
   background-image: url('public/car.png');
   background-size: cover;
   background-repeat: no-repeat;
