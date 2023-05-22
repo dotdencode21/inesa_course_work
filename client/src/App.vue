@@ -1,5 +1,7 @@
 <template>
-  <div class="btn btn-primary">It's work</div>
+  <div>
+    <router-view />
+  </div>
 </template>
 <script>
 export default {

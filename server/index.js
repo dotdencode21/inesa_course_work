@@ -14,10 +14,16 @@ router.get("/", (req, res) => {
   res.json({ message: "Hello world" });
 });
 
+const PORT = process.env.PORT || 5000;
+
 function start() {
-  app.listen(process.env.PORT, () => {
-    console.log(`Server has been started on port: ${process.env.PORT}`);
-  });
+  try {
+     app.listen(PORT, () => {
+      console.log(`Server has been started on port: ${PORT}`);
+    });
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 start();
