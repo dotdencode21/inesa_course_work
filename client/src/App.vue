@@ -1,5 +1,5 @@
 <template>
-  <div>It's work</div>
+  <div class="btn btn-primary">It's work</div>
 </template>
 <script>
 export default {
