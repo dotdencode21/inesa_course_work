@@ -5,15 +5,16 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-const router = require("./router");
+const authRouter = require("./routes/auth.route.js");
+const userRouter = require("./routes/users.route.js");
+const carRouter = require("./routes/cars.route.js");
 
 app.use(express.json());
 app.use(cors());
-app.use(router);
 
-router.get("/", (req, res) => {
-  res.json({ message: "Hello world" });
-});
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
+app.use("/cars", carRouter);
 
 const PORT = process.env.PORT || 5000;
 
