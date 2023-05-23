@@ -5,12 +5,12 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+app.use(express.json());
+app.use(cors());
+
 const authRouter = require("./routes/auth.route.js");
 const userRouter = require("./routes/users.route.js");
 const carRouter = require("./routes/cars.route.js");
-
-app.use(express.json());
-app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
