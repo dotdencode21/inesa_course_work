@@ -34,6 +34,12 @@ class AuthController {
 
   async signIn(req, res) {
     try {
+      const validationErrors = validationResult(req);
+
+      if (!validationErrors.isEmpty()) {
+        return res.status(400).json(validationErrors);
+      }
+      
       const { username, password } = req.body;
 
       const user = await User.findOne({ username });
