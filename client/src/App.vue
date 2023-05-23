@@ -4,12 +4,7 @@
   </div>
 </template>
 <script>
-export default {
-  mounted() {
-    console.log(this.$store);
-    console.log(this.$router);
-  }
-};
+export default {};
 </script>
 <style scoped>
 
