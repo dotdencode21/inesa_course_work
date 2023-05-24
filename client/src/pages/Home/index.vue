@@ -24,8 +24,8 @@
       <a class="nav-link" href="">МІЙ ПРОФІЛЬ</a>
   </li>
     </ul>
-<hr align="left" width="1657" size="2" color="#e0d5c9" />
 </div>
+
 <div class="span">
 <span style="color: white;">Оренда</span> <span style="color: rgb(255, 217, 0);">Преміум</span> <span style="color: white;">Авто</span> 
 </div>
@@ -39,6 +39,7 @@
       ОРЕНДУВАТИ
   </span>
 </button>
+
 <div class="icon"></div>
   <div class="yellow-block"></div>
   <div class="car"></div>
