@@ -34,8 +34,9 @@
 </div>
 <p class="txt">Mercedes-AMG GT S</p>
 <p style="color: white; display: inline-block; font-size: 35px; margin: 0em 0em 0em 1.5em;">На добу від </p> <p style="color: rgb(255, 217, 0); display: inline-block; font-size: 35px;"> 200 грн</p>
-<button class="Button">
-  <span class="Button-inner">
+
+<button class="button">
+  <span class="button-inner">
       ОРЕНДУВАТИ
   </span>
 </button>
@@ -119,7 +120,7 @@ export default {};
   margin: 0em 0em 0em 1.5em;
   font-weight: bold;
 }
-.Button {
+.button {
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -136,7 +137,7 @@ export default {};
   text-decoration: none;
   user-select: none;
 }
-.Button-inner {
+.button-inner {
   align-items: center;
   background: rgb(255, 217, 0);
   border: 2px solid transparent;
@@ -148,11 +149,11 @@ export default {};
   min-width: 2.5em;
   padding: 0 1em;
   font-weight: bold;
-  position: relative; /* WebKit Bug 173872 */
+  position: relative;
   width: 100%;
 }
 
-.Button:focus {
+.button:focus {
   outline: none;
 }
 </style>
