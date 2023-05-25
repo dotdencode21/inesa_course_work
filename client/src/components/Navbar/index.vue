@@ -60,7 +60,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3em;
+  gap: 4.5em;
 }
 .navbar__menu__item {
   padding: 0 0.5em;
