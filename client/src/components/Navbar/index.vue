@@ -60,7 +60,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.5em;
+  gap: 3em;
 }
 .navbar__menu__item {
   padding: 0 0.5em;
@@ -73,7 +73,7 @@ export default {
 .navbar__menu__item__link {
   text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.25em;
+  font-size: 1.125em;
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.02em;
