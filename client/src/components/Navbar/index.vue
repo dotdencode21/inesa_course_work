@@ -46,7 +46,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: transparent;
+  background-color: #000;
   position: fixed;
   top: 0;
   left: 0;
@@ -72,7 +72,7 @@ export default {
 }
 .navbar__menu__item__link {
   text-decoration: none;
-  font-size: 1.375em;
+  font-size: 1.25em;
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.02em;
