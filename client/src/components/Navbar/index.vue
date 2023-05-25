@@ -71,6 +71,7 @@ export default {
   align-items: center;  
 }
 .navbar__menu__item__link {
+  text-transform: uppercase;
   text-decoration: none;
   font-size: 1.25em;
   color: #fff;

@@ -49,7 +49,7 @@ export default {};
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 }
 .introduction__advertising__block__title {
   color: #fff;
