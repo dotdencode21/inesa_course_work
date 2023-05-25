@@ -34,7 +34,7 @@ export default {};
   object-fit: cover;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding: 10em 4em;
+  padding: 9em 4em;
 }
 .introduction__discount {
   width: 100%;
@@ -53,7 +53,7 @@ export default {};
 }
 .introduction__advertising__block__title {
   color: #fff;
-  font-size: 4em;
+  font-size: 2.75em;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -62,7 +62,7 @@ export default {};
 }
 .introduction__advertising__block__phone {
   color: #fff;
-  font-size: 1.75em;
+  font-size: 1.5em;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
