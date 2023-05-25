@@ -1,4 +1,28 @@
+
 <template>
+  <div class="home-page">
+    <introduction-section />
+  </div>
+</template>
+<script>
+import IntroductionSection from "./sections/Introduction/index.vue"
+
+export default {
+  components: {
+    IntroductionSection
+  }
+};
+</script>
+<style scoped>
+.home-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+</style>
+<!-- <template>
   <div class="background"></div>
   <div class="section">
     <ul class="nav">
@@ -97,7 +121,6 @@ export default {};
       padding: 1em 1.5em;
 }
 .nav-link{
-  font-family: 'Century Gothic';
   font-size: 15px;
   color: #ffffff;
 }
@@ -156,4 +179,4 @@ export default {};
 .button:focus {
   outline: none;
 }
-</style>
+</style> -->
