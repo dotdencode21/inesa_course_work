@@ -27,16 +27,16 @@
 </div>
 
 <div class="span">
-<span style="color: white;">Оренда</span> <span style="color: rgb(255, 217, 0);">Преміум</span> <span style="color: white;">Авто</span> 
+  <span style="color: white;">Оренда</span> <span style="color: rgb(255, 217, 0);">Преміум</span> <span style="color: white;">Авто</span> 
 </div>
 <div class="number">
-<span style="color: white; display: inline-block;">+380</span> <span style="color: rgb(255, 217, 0); display: inline-block;">(99)6083233</span>
+  <span style="color: white; display: inline-block;">+380</span> <span style="color: rgb(255, 217, 0); display: inline-block;">(99)6083233</span>
 </div>
 <p class="txt">Mercedes-AMG GT S</p>
-<p style="color: white; display: inline-block; font-size: 35px; margin: 0em 0em 0em 1.5em;">На добу від </p> <p style="color: rgb(255, 217, 0); display: inline-block; font-size: 35px;"> 200 грн</p>
+<p style="color: white; display: inline-block; font-size: 35px; margin: 0em 0em 0em 1.5em;">На добу від </p> <p style="color: rgb(255, 217, 0); display: inline-block; font-size: 35px; margin-left: 8px;"> 200 грн</p>
 
-<button class="button">
-  <span class="button-inner">
+<button class="btn-rent">
+  <span class="btn-rent__label">
       ОРЕНДУВАТИ
   </span>
 </button>
@@ -55,7 +55,7 @@ export default {};
   width: 100%;
   height: 500px;
   background-size: cover;
-  background-image: url('public/city.jpg');
+  background-image: url('city.jpg');
   background-repeat: no-repeat;
   background-position: bottom;
   z-index: -1;
@@ -66,7 +66,7 @@ export default {};
   left: 3em;
   width: 150px;
   height: 39px;
-  background-image: url('public/logo.png');
+  background-image: url('logo.png');
   background-size: cover;
   background-repeat: round;
   z-index: 1;
@@ -84,7 +84,7 @@ export default {};
   right: 2em;
   width: 900px;
   height: 408px;
-  background-image: url('public/car.png');
+  background-image: url('car.png');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 1;
@@ -120,40 +120,19 @@ export default {};
   margin: 0em 0em 0em 1.5em;
   font-weight: bold;
 }
-.button {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  color: inherit;
-  display: inline-block;
-  font: inherit;
-  height: auto;
-  line-height: 1;
-  margin: 0em 0em 0em 3em;
-  display: block;
-  padding: 0;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-}
-.button-inner {
-  align-items: center;
+.btn-rent {
   background: rgb(255, 217, 0);
-  border: 2px solid transparent;
-  border-radius: 99em;
-  color: black;
+  border-radius: 25px;
   display: flex;
-  font-weight: 400;
-  height: 2.5em;
-  min-width: 2.5em;
-  padding: 0 1em;
-  font-weight: bold;
-  position: relative;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  margin: 0em 0em 0em 3em;
+  padding: 0 16px;
 }
-
-.button:focus {
-  outline: none;
+.btn-rent__label {
+  color: black;
+  font-weight: 400;
+  font-weight: bold;
 }
 </style>
