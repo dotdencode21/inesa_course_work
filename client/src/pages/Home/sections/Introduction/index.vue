@@ -28,7 +28,7 @@ export default {};
 }
 .introduction__advertising {
   width: 100%;
-  min-height: 50rem;
+  min-height: 43.75rem;
   background-image: url("/city.jpg");
   background-position: center center;
   object-fit: cover;
@@ -38,7 +38,7 @@ export default {};
 }
 .introduction__discount {
   width: 100%;
-  min-height: 50em;
+  min-height: 43.75em;
   background-color: #ffd900;
   padding: 0 4em;
 }
