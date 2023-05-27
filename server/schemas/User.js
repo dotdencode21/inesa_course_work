@@ -7,6 +7,13 @@ const userSchema = new mongoose.Schema({
   phoneNumber: String,
   entity: Boolean,         // физ. лицо
   individual: Boolean,     // юр. лицо
+  comment: {
+    message: String,
+    departureDate: {
+      type: Date, 
+      default: Date.now 
+    }
+  },
   role: {
     type: String,
     default: "user"

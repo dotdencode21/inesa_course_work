@@ -7,6 +7,7 @@ const carSchema = new mongoose.Schema({
   gearboxType: String,
   fuelType: String,
   category: String,
+  pricePerHour: Number
 }, { timestamps: true });
 
 module.exports = mongoose.model("Car", carSchema);

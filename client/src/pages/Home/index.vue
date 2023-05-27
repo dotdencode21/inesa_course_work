@@ -1,15 +1,16 @@
-
 <template>
   <div class="home-page">
     <introduction-section />
+    <adventages-section />
   </div>
 </template>
 <script>
-import IntroductionSection from "./sections/Introduction/index.vue"
+import { defineAsyncComponent } from "vue";
 
 export default {
   components: {
-    IntroductionSection
+    IntroductionSection: defineAsyncComponent(() => import("./Sections/Introduction/index.vue")),
+    AdventagesSection: defineAsyncComponent(() => import("./Sections/Adventages/index.vue"))
   }
 };
 </script>

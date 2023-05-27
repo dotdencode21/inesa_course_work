@@ -28,15 +28,14 @@ export default {
   computed: {
     links() {
       return [
-        { title: "Головна", anchor: "#main" },
-        { title: "Наші переваги", anchor: "#our_advantages" },
-        { title: "Прокат авто", anchor: "#car_rental" },
+        { title: "Прокат авто", anchor: "#carRental" },
+        { title: "Наші переваги", anchor: "#ourAdventages" },
         { title: "Відгуки", anchor: "#feedbacks" },
         { title: "Питання", anchor: "#questions" },
         { title: "Контакти", anchor: "#contacts" },
       ];
     }
-  }
+  },
 };
 </script>
 <style scoped>
@@ -46,11 +45,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 4em;
+  background-color: transparent;
 }
 .navbar__logo {
   width: 9.375em;
@@ -61,30 +56,29 @@ export default {
   justify-content: flex-start;
   align-items: center;
   gap: 4.5em;
+  margin-bottom: 0;
 }
 .navbar__menu__item {
-  padding: 0 0.5em;
-  min-height: 3.75em;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  min-height: inherit;
+  justify-content: center;
   align-items: center;  
 }
 .navbar__menu__item__link {
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.125em;
-  color: #fff;
+  color: var(--white-color);
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: all 0.2s ease;
 }
 .navbar__menu__item__link:hover {
-  color: #ffd900;
+  color: var(--secondary-color);
 }
 .navbar__account {
   background-color: transparent;
-  border: 0.125em solid #ffd900;
+  border: 0.125em solid var(--secondary-color);
   border-radius: 1.5em;
   padding: 0.5em 3.5em;
   display: flex;
@@ -93,16 +87,16 @@ export default {
   transition: all 0.2s ease;
 }
 .navbar__account:hover {
-  background-color: #ffd900;
-  color: #000;
+  background-color: var(--secondary-color);
+  color: var(--black-color);
 }
 .navbar__account__label {
   font-size: 1.25em;
-  color: #ffd900;
+  color: var(--secondary-color);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 .navbar__account:is(:hover) .navbar__account__label {
-  color: #000;
+  color: var(--black-color);
 }
 </style>

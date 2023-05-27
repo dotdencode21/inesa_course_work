@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Inter:wght@400;700&display=swap');
 
+:root {
+  --main-color: #f6cc1e;
+  --secondary-color: #f9bf18;
+  --white-color: #ffffff;
+  --black-color: #101010;
+}
+
 *,
 *::after,
 *::before {
@@ -7,6 +14,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Inter";
+}
+
+button {
+  border: none;
 }
 
 ul {
