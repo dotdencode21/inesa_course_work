@@ -19,7 +19,10 @@
         </button>
       </li>
     </ul>
-    <button class="navbar__account">
+    <button 
+      class="navbar__account"
+      @click="goToSignIn"
+    >
       <span class="navbar__account__label">
         Mій профіль
       </span>
@@ -57,8 +60,11 @@ export default {
         default: 
           break;
       };
+    },
+    goToSignIn() {
+      this.$router.push({ path: "/auth" });
     }
-  }
+  },
 };
 </script>
 <style scoped>

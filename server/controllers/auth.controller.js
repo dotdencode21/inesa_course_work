@@ -44,7 +44,7 @@ class AuthController {
 
       const user = await User.findOne({ username });
 
-      if (!Object.keys(user).length) {
+      if (!user) {
         return res.status(401).json({ message: `User with username ${username} not found` });
       }
 

@@ -26,6 +26,10 @@ button {
   border: none;
 }
 
+input {
+  outline: none;
+}
+
 ul {
   list-style: none;
 }
