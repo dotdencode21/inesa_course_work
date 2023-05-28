@@ -11,9 +11,12 @@
         :key="linkIndex"
         class="navbar__menu__item"
       >
-        <a :href="link.anchor" class="navbar__menu__item__link">
-          {{ link.title }}
-        </a>
+        <button 
+          class="navbar__menu__item__link"
+          @click="scrollToSection(link)"
+        >
+          {{ link }}
+        </button>
       </li>
     </ul>
     <button class="navbar__account">
@@ -28,14 +31,34 @@ export default {
   computed: {
     links() {
       return [
-        { title: "Прокат авто", anchor: "#carRental" },
-        { title: "Наші переваги", anchor: "#ourAdventages" },
-        { title: "Відгуки", anchor: "#feedbacks" },
-        { title: "Питання", anchor: "#questions" },
-        { title: "Контакти", anchor: "#contacts" },
+        "Прокат авто",
+        "Наші переваги",
+        "Відгуки",
+        "Питання",
+        "Контакти"
       ];
     }
   },
+  mounted() {
+    window.addEventListener("scroll", this.scrollToSection);
+  },
+  unmounted() {
+    window.removeEventListener("scroll", this.scrollToSection);
+  },
+  methods: {
+    scrollToSection(section) {
+      switch (section) {
+        case "Наші переваги":
+          window.scrollTo({
+            top: 1400,
+            behavior: "smooth"
+          });
+          break;
+        default: 
+          break;
+      };
+    }
+  }
 };
 </script>
 <style scoped>
@@ -49,7 +72,6 @@ export default {
 }
 .navbar__logo {
   width: 9.375em;
-  height: 2.5em;
 }
 .navbar__menu {
   display: flex;
@@ -65,6 +87,7 @@ export default {
   align-items: center;  
 }
 .navbar__menu__item__link {
+  background-color: transparent;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.125em;

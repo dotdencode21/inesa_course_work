@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&family=Inter:wght@400;700&display=swap');
 
 :root {
+  /* main */
   --main-color: #f6cc1e;
+
+  /* secondary */
   --secondary-color: #f9bf18;
+
+  /* neutral */
   --white-color: #ffffff;
   --black-color: #101010;
+  --gray-color: #f4f4f4;
 }
 
 *,
@@ -29,12 +35,12 @@ ul {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #000;
+  background-color: var(--black-color);
 }
 
 ::-webkit-scrollbar-thumb {
   border: 0.3125em solid transparent;
   border-radius: 1.5em;
-  background-color: #fff;
+  background-color: var(--white-color);
   background-clip: content-box;
 }
