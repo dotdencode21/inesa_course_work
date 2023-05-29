@@ -13,18 +13,6 @@ class CarController {
     }
   }
 
-  async getCar(req, res) {
-    try {
-      const { carId } = req.body;
-
-      const car = await Car.findById(carId);
-
-      return res.status(200).json(car);
-    } catch (e) {
-      return res.status(500).json({ message: "Failed to get car" });
-    }
-  }
-
   async addCar(req, res) {
     try {
       const validationErrors = validationResult(req);
@@ -33,7 +21,27 @@ class CarController {
         return res.status(400).json(validationErrors);
       }
 
-      const newCar = await Car.insertMany(req.body);
+      const { 
+        name,
+        serialNumber,
+        yearOfManufacture,
+        gearboxType,
+        fuelType,
+        category,
+        pricePerHour
+       } = req.body;
+
+      const newCar = new Car({
+        name,
+        serialNumber,
+        yearOfManufacture,
+        gearboxType,
+        fuelType,
+        category,
+        pricePerHour
+      });
+
+      await newCar.save();
 
       return res.status(200).json(newCar);
     } catch (e) {

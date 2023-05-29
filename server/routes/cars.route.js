@@ -6,7 +6,6 @@ const carController = require("../controllers/car.controller.js");
 const carRouter = express.Router();
 
 carRouter.get("/all", carController.getCars);
-carRouter.get("/:carId", carController.getCar);
 carRouter.post(
   "/add", 
   body("name")

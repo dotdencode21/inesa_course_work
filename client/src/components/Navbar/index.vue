@@ -30,6 +30,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   computed: {
     links() {
@@ -42,15 +44,27 @@ export default {
       ];
     }
   },
-  mounted() {
+  async mounted() {
     window.addEventListener("scroll", this.scrollToSection);
+
+    try {
+      await this.getCurrentUser({
+        token: localStorage.getItem("token")
+      });
+    } catch (e) {
+      console.error(e);
+    }
   },
   unmounted() {
     window.removeEventListener("scroll", this.scrollToSection);
   },
   methods: {
+    ...mapActions("user", ["getCurrentUser"]),
     scrollToSection(section) {
       switch (section) {
+        case "Прокат авто":
+          this.$router.push({ path: "/cars" });
+          break;
         case "Наші переваги":
           window.scrollTo({
             top: 1400,
