@@ -5,8 +5,6 @@ const userSchema = new mongoose.Schema({
   password: String,
   age: Number,
   phoneNumber: String,
-  entity: Boolean,         // физ. лицо
-  individual: Boolean,     // юр. лицо
   comment: {
     message: String,
     departureDate: {

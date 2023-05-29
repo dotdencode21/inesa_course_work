@@ -7,6 +7,7 @@
     </div>
     <sign-up-form 
       v-if="goToSignUp"
+      @go-to-sign-in="handleGoToSignIn"
     />
     <sign-in-form 
       v-else
@@ -20,7 +21,7 @@
   </div>
 </template>
 <script>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from "vue";
 
 export default {
   components: {
@@ -29,11 +30,14 @@ export default {
   },
   data() {
     return {
-      goToSignUp: false
+      goToSignUp: false,
     }
   },
   methods: {
     handleGoToSignUp(goToSignUp) {
+      this.goToSignUp = goToSignUp;
+    },
+    handleGoToSignIn(goToSignUp) {
       this.goToSignUp = goToSignUp;
     }
   }

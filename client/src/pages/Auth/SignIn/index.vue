@@ -91,11 +91,19 @@ export default {
     goToSignUp() {
       this.$emit("go-to-sign-up", true);
     },
-    handleSignIn() {
-      this.signIn({ 
-        username: this.username,
-        password: this.password
-      });
+    async handleSignIn() {
+      try {
+        await this.signIn({ 
+          username: this.username,
+          password: this.password
+        });
+
+        if (localStorage.getItem("token")) {
+          this.$router.push({ path: "/" });
+        }
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 };

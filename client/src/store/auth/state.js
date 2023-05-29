@@ -1,3 +1,1 @@
-export default {
-  registered: false
-};
+export default {};

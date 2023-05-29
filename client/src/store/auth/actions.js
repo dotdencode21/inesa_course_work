@@ -5,7 +5,7 @@ import { SERVER_URL } from "../../constants";
 export default {
   async signIn(_, payload) {
     try {
-      const { token } = await axios.post(`${SERVER_URL}/auth/sign-in`, payload);
+      const { data: { token } } = await axios.post(`${SERVER_URL}/auth/sign-in`, payload);      
 
       if (token) {
         localStorage.setItem("token", token);
@@ -16,11 +16,9 @@ export default {
   },
   async signUp({ commit }, payload) {
     try {
-      const data = await axios.post(`${SERVER_URL}/auth/sign-up`, payload);
+      const { status } = await axios.post(`${SERVER_URL}/auth/sign-up`, payload);
 
-      if (data) {
-        commit("setRegistered", true);
-      }
+      return status === 200;
     } catch (e) {
       console.error(e);
     }

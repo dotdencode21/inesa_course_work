@@ -1,5 +1,1 @@
-export default {
-  setRegistered(state, registered) {
-    state.registered = registered;
-  }
-};
+export default {};
