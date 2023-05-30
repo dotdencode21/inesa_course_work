@@ -41,9 +41,7 @@ class CarController {
         pricePerHour
       });
 
-      await newCar.save().then(() => {
-        return res.status(200).json(newCar);
-      });
+      return res.status(200).json(await newCar.save());
     } catch (e) {
       return res.status(500).json({ message: "Failed to add car" });
     }

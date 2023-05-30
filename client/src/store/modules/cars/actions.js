@@ -14,7 +14,7 @@ export default {
       console.error(e);
     }
   },
-  async createCar({ commit }, payload) {
+  async createCar({ dispatch }, payload) {
     try {
       const { status } = await axios.post(`${SERVER_URL}/cars/add`, payload);
 
