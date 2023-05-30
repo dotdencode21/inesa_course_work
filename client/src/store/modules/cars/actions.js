@@ -36,7 +36,7 @@ export default {
       console.error(e);
     }
   },
-  async deleteCar({ commit }, payload) {
+  async deleteCar({ dispatch }, payload) {
     try {
       const { status } = await axios.delete(`${SERVER_URL}/cars/delete`, payload);
 
