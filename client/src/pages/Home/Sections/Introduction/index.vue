@@ -17,7 +17,7 @@
         <span class="introduction__proposal__info__price marked bold">
           На добу від <span>200 грн</span>
         </span>
-        <button class="introduction__proposal__info__rental-btn">
+        <button class="introduction__proposal__info__rental-btn" @click="goToCarsRent">
           <span class="introduction__proposal__info__rental-btn__label">
             Орендувати
           </span>
@@ -44,7 +44,7 @@
           </span>
         </div>
       </div>
-      <button class="introduction__tip__btn">
+      <button class="introduction__tip__btn" @click="goToCarsRent">
         <span class="introduction__tip__btn__label">
           Поїхали
         </span>
@@ -58,6 +58,11 @@ import { defineAsyncComponent } from "vue";
 export default {
   components: {
     NavbarMenu: defineAsyncComponent(() => import("@/components/Navbar/index.vue"))
+  },
+  methods: {
+    goToCarsRent() {
+      this.$router.push({ path: "/cars" });
+    }
   }
 };
 </script>
