@@ -63,7 +63,7 @@ class AuthController {
         return res.status(401). json({ message: "Wrong password" });
       }
 
-      const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "72h" });
+      const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "720h" });
 
       return res.status(200).json({ token });
     } catch (e) {
