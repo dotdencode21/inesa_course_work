@@ -20,6 +20,16 @@
       </li>
     </ul>
     <button 
+      v-if="Object.keys(currentUser).length"
+      class="navbar__menu__item account"
+      @click="goToAccount"
+    >
+      <span class="navbar__menu__item__link">
+        {{ currentUser.username }}
+      </span>
+    </button>
+    <button
+      v-else 
       class="navbar__account"
       @click="goToSignIn"
     >
@@ -30,10 +40,11 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   computed: {
+    ...mapState("user", ["currentUser"]),
     links() {
       return [
         "Прокат авто",
@@ -77,6 +88,9 @@ export default {
     },
     goToSignIn() {
       this.$router.push({ path: "/auth" });
+    },
+    goToAccount() {
+      this.$router.push({ path: "/account" });
     }
   },
 };
@@ -141,5 +155,8 @@ export default {
 }
 .navbar__account:is(:hover) .navbar__account__label {
   color: var(--black-color);
+}
+.account {
+  background-color: transparent;
 }
 </style>

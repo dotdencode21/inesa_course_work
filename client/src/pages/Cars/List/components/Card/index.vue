@@ -1,12 +1,64 @@
 <template>
   <div class="card">
+    <modal-window 
+      :is-open="isUpdateCarAction"
+      :car="car"
+      type="update"
+      @close="handleCloseUpdate"
+      @updated-car="handleUpdatedCar"
+      @submit="handleSubmitUpdateCar"
+    />
+    <modal-window 
+      :is-open="isDeleteCarAction"
+      :car="car"
+      type="delete"
+      @close="handleCloseDelete"
+      @submit="handleSubmitDeleteCar"
+    />
     <div class="card__header">
       <span class="card__header__title">
         {{ name }}
       </span>
     </div>
     <div class="card__body">
-
+      <div class="card__body__item">
+        <span>
+          Рік випуску:
+        </span>
+        <span class="card__body__item__value"> 
+          {{ yearOfManufacture }}
+        </span>
+      </div>
+      <div class="card__body__item">
+        <span>
+          Тип коробки передач: 
+        </span>
+        <span class="card__body__item__value">
+          {{ gearboxType }}
+        </span>
+      </div>
+      <div class="card__body__item">
+        <span>
+          Тип палива:
+        </span>
+        <span class="card__body__item__value">
+          {{ fuelType }}
+        </span>
+      </div>
+      <div class="card__body__item">
+        <span>
+          Категорія:
+        </span>
+        <span class="card__body__item__value">
+          {{ category }}
+        </span>
+      </div>
+      <div class="card__body__item">
+        <span>Оренда на годину: </span>
+        <span class="card__body__item__value">
+          {{ pricePerHour }}₴
+        </span>
+      </div>
     </div>
     <div 
       class="card__footer"
@@ -16,11 +68,6 @@
         <button class="card__footer__user-btns__rent">
           <span class="card__footer__user-btns__rent__label">
             Орендувати
-          </span>
-        </button>
-        <button class="card__footer__user-btns__more">
-          <span class="card__footer__user-btns__more__label">
-            Детальніше
           </span>
         </button>
       </div>
@@ -37,8 +84,14 @@
             v-if="showAdminActions"
             class="card__footer__admin-btns__actions__list"
           >
-            <span>123</span>
-            <span>123</span>
+            <button class="update-btn" @click="handleUpdateCar">
+              <pen-icon />
+              <span class="update-btn__label">Оновити</span>
+            </button>
+            <button class="delete-btn" @click="handleDeleteCar">
+              <trash-icon />
+              <span class="delete-btn__label">Видалити</span>
+            </button>
           </div>
         </button>
       </div>
@@ -51,7 +104,10 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    DotsIcon: defineAsyncComponent(() => import("@/components/Icons/Dots.vue"))
+    DotsIcon: defineAsyncComponent(() => import("@/components/Icons/Dots.vue")),
+    PenIcon: defineAsyncComponent(() => import("@/components/Icons/Pen.vue")),
+    TrashIcon: defineAsyncComponent(() => import("@/components/Icons/Trash.vue")),
+    ModalWindow: defineAsyncComponent(() => import("@/components/Modal/index.vue"))
   },
   props: {
     car: {
@@ -61,8 +117,10 @@ export default {
   },
   data() {
     return {
-      currentCar: {},
-      showAdminActions: false
+      showAdminActions: false,
+      isDeleteCarAction: false,
+      isUpdateCarAction: false,
+      updatedCar: {}
     }
   },
   computed: {
@@ -97,15 +155,68 @@ export default {
   },
   methods: {
     ...mapActions("user", ["getCurrentUser"]),
+    ...mapActions("cars", ["updateCar", "deleteCar"]),
     toggleShowAdminActions() {
       this.showAdminActions = !this.showAdminActions;
+    },
+    handleUpdateCar() {
+      this.isUpdateCarAction = true;
+    },
+    handleDeleteCar() {
+      this.isDeleteCarAction = true;
+    },
+    handleCloseUpdate(close) {
+      this.isUpdateCarAction = close;
+    },
+    handleCloseDelete(close) {
+      this.isDeleteCarAction = close;
+    },
+    handleUpdatedCar(updatedCar) {
+      this.updatedCar = updatedCar;
+      console.log(this.updatedCar.name);
+    },
+    async handleSubmitUpdateCar(submit) {
+      if (submit) {
+        try {
+          await this.updateCar({
+            carId: this.car._id,
+            name: this.updatedCar.name?.length ? this.updatedCar.name : this.car.name,
+            yearOfManufacture: this.updatedCar.yearOfManufacture ? +(this.updatedCar.yearOfManufacture) : this.car.yearOfManufacture,
+            gearboxType: this.updatedCar.gearboxType?.length ? this.updatedCar.gearboxType : this.car.gearboxType,
+            fuelType: this.updatedCar.fuelType?.length ? this.updatedCar.fuelType : this.car.fuelType,
+            category: this.updatedCar.category?.length ? this.updatedCar.category : this.car.category,
+            pricePerHour: this.updatedCar.pricePerHour ? +(this.updatedCar.pricePerHour) : this.car.pricePerHour,
+          });
+
+          this.isUpdateCarAction = false;
+        } catch (e) {
+          console.error(e);
+        } finally {
+          this.isUpdateCarAction = false;
+        }
+      }
+    },
+    async handleSubmitDeleteCar(submit) {
+      if (submit) {
+        try {
+          await this.deleteCar({
+            carId: this.car._id,
+          });
+
+          this.isDeleteCarAction = false;
+        } catch (e) {
+          console.error(e);
+        } finally {
+          this.isDeleteCarAction = false;
+        }
+      }
     }
   }
 };
 </script>
 <style scoped>
 .card {
-  width: 27.5em;
+  width: 34em;
   min-height: 20em;
   background-color: #EBE9E9;
   border: 0.0625em solid var(--secondary-color);
@@ -150,23 +261,10 @@ export default {
   background-color: var(--main-color);
   border-radius: 1.5em;
 }
-.card__footer__user-btns__more {
-  padding: 0.5em 1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #345995;
-  border-radius: 1.5em;
-}
 .card__footer__user-btns__rent__label {
   font-weight: 500;
   font-size: 1.125em;
   color: var(--black-color);
-}
-.card__footer__user-btns__more__label {
-  font-weight: 500;
-  font-size: 1.125em;
-  color: var(--white-color);
 }
 .card__footer__admin-btns {
   display: flex;
@@ -186,13 +284,55 @@ export default {
   border-radius: 50%;
 }
 .card__footer__admin-btns__actions__list {
+  z-index: 1;
   position: absolute;
-  top: 50%;
-  left: 10%;
+  top: 55%;
+  left: -100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   background-color: var(--white-color);
+}
+.update-btn,
+.delete-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+}
+.update-btn__label,
+.delete-btn__label {
+  font-weight: 500;
+  font-size: 1.25em;
+  color: var(--black-color);
+}
+.update-btn:hover,
+.delete-btn:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.card__body {
+  padding: 0.5em 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+.card__body__item {
+  width: 100%;
+  padding: 0.25em 0.5em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+.card__body__item__value {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--black-color);  
 }
 </style>

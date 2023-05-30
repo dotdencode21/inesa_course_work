@@ -41,9 +41,9 @@ class CarController {
         pricePerHour
       });
 
-      await newCar.save();
-
-      return res.status(200).json(newCar);
+      await newCar.save().then(() => {
+        return res.status(200).json(newCar);
+      });
     } catch (e) {
       return res.status(500).json({ message: "Failed to add car" });
     }
@@ -51,7 +51,7 @@ class CarController {
 
   async updateCar(req, res) {
     try {
-      const { carId } = req.params;
+      const { carId } = req.body;
 
       const updatedCar = await Car.findByIdAndUpdate(carId, req.body, { new: true });
 
@@ -63,7 +63,7 @@ class CarController {
 
   async deleteCar(req, res) {
     try {
-      const { carId } = req.params;
+      const { carId } = req.body;
 
       await Car.findByIdAndDelete(carId);
 

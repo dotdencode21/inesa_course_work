@@ -19,7 +19,9 @@ class UserController {
     }
   }
   
-  updateUser(req, res) {}
+  updateUser(req, res) {
+    
+  }
 
   deleteUser(req, res) {}
 };

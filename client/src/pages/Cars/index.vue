@@ -1,5 +1,10 @@
 <template>
   <div class="cars">
+    <button class="back__btn" @click="backToMain">
+      <span class="back__btn__label">
+        На головну
+      </span>
+    </button>
     <div class="cars__header">
       <wheel-icon />
       <span class="cars__header__title">
@@ -7,7 +12,7 @@
       </span>
     </div>
     <div class="cars__content">
-      <cars-filters />
+      <!-- <cars-filters /> -->
       <cars-list />
     </div>
   </div>
@@ -19,7 +24,7 @@ import { mapActions } from "vuex";
 
 export default {
   components: {
-    CarsFilters: defineAsyncComponent(() => import("./Filters/index.vue")),
+    // CarsFilters: defineAsyncComponent(() => import("./Filters/index.vue")),
     CarsList: defineAsyncComponent(() => import("./List/index.vue")),
     WheelIcon: defineAsyncComponent(() => import("@/components/Icons/Wheel.vue"))
   },
@@ -32,6 +37,9 @@ export default {
   },
   methods: {
     ...mapActions("cars", ["getCars"]),
+    backToMain() {
+      this.$router.push({ path: "/" });
+    }
   }
 };
 </script>
@@ -68,5 +76,18 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1.5em;
+}
+.back__btn {
+  padding: 1em 1.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  border-radius: 1.5em;
+}
+.back__btn__label {
+  font-weight: 500;
+  font-size: 1.25em;
+  color: var(--black-color);
 }
 </style>
