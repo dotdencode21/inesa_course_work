@@ -15,6 +15,13 @@
       @close="handleCloseDelete"
       @submit="handleSubmitDeleteCar"
     />
+    <modal-window 
+      :is-open="isRentCarAction"
+      :car="car"
+      type="rent"
+      @close="handleCloseRent"
+      @submit="handleSubmitRentCar"
+    />
     <div class="card__header">
       <span class="card__header__title">
         {{ name }}
@@ -65,7 +72,7 @@
       :style="{ justifyContent: isAdmin ? 'space-between' : 'flex-start' }"
     >
       <div class="card__footer__user-btns">
-        <button class="card__footer__user-btns__rent">
+        <button class="card__footer__user-btns__rent" @click="handleRentCar">
           <span class="card__footer__user-btns__rent__label">
             Орендувати
           </span>
@@ -120,11 +127,12 @@ export default {
       showAdminActions: false,
       isDeleteCarAction: false,
       isUpdateCarAction: false,
+      isRentCarAction: false,
       updatedCar: {}
     }
   },
   computed: {
-    ...mapState("user", ["isAdmin"]),
+    ...mapState("user", ["isAdmin", "currentUser"]),
     name() {
       return this.car.name;
     },
@@ -154,7 +162,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["getCurrentUser"]),
+    ...mapActions("user", ["getCurrentUser", "updateCurrentUser"]),
     ...mapActions("cars", ["updateCar", "deleteCar"]),
     toggleShowAdminActions() {
       this.showAdminActions = !this.showAdminActions;
@@ -165,15 +173,20 @@ export default {
     handleDeleteCar() {
       this.isDeleteCarAction = true;
     },
+    handleRentCar() {
+      this.isRentCarAction = true;
+    },
     handleCloseUpdate(close) {
       this.isUpdateCarAction = close;
     },
     handleCloseDelete(close) {
       this.isDeleteCarAction = close;
     },
+    handleCloseRent(close) {
+      this.isRentCarAction = close;
+    },
     handleUpdatedCar(updatedCar) {
       this.updatedCar = updatedCar;
-      console.log(this.updatedCar.name);
     },
     async handleSubmitUpdateCar(submit) {
       if (submit) {
@@ -210,7 +223,25 @@ export default {
           this.isDeleteCarAction = false;
         }
       }
+    },
+    async handleSubmitRentCar(submit) {
+      if (submit) {
+       try {
+        await this.updateCurrentUser({
+          token: localStorage.getItem("token"),
+          ...this.currentUser,
+          orders: [...this.currentUser.orders, this.car]
+        });
+
+        this.isRentCarAction = false;
+        this.$router.push({ path: "/account" });
+       } catch (e) {
+        console.error(e);
+      } finally {
+        this.isRentCarAction = false;
+      }
     }
+  }
   }
 };
 </script>

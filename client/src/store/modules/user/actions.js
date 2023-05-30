@@ -13,5 +13,16 @@ export default {
         commit("setIsAdmin", true);
       }
     }
+  },
+  async updateCurrentUser({ dispatch }, payload) {
+    try {
+      const { status } = await axios.put(`${SERVER_URL}/users/update`, payload);
+  
+      if (status === 200) {
+        await dispatch("getCurrentUser", payload);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 };

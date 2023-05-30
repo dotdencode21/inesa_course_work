@@ -31,7 +31,7 @@
         </div>
         <div class="account__content__info__item">
           <span class="account__content__info__item__label">Кількість оренд:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.orders.length }}</span>
+          <span class="account__content__info__item__label__bold">{{ currentUser.orders?.length }}</span>
         </div>
       </div>
     </div>
@@ -48,6 +48,15 @@ export default {
   },
   computed: {
     ...mapState("user", ["currentUser"]),
+  },
+  async mounted() {
+    try {
+      await this.getCurrentUser({
+        token: localStorage.getItem("token")
+      });
+    } catch (e) {
+      console.error(e);
+    }
   },
   async mounted() {
     try {

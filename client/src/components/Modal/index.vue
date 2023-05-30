@@ -10,6 +10,7 @@
         <delete-body v-if="type === 'delete'" :name="car.name"/>
         <update-body v-if="type === 'update'" :car="car" @updated-car="handleUpdatedCar"/>
         <create-body v-if="type === 'create'" @created-car="handleCreatedCar"/>
+        <rent-body v-if="type === 'rent'" :name="car.name" />
       </div>
       <div class="modal__footer">
         <button class="submit-btn" @click="handleSubmit">
@@ -27,7 +28,8 @@ export default {
     CloseIcon: defineAsyncComponent(() => import("@/components/Icons/Close.vue")),
     DeleteBody: defineAsyncComponent(() => import("./Body/Delete.vue")),
     UpdateBody: defineAsyncComponent(() => import("./Body/Update.vue")),
-    CreateBody: defineAsyncComponent(() => import("./Body/Create.vue"))
+    CreateBody: defineAsyncComponent(() => import("./Body/Create.vue")),
+    RentBody: defineAsyncComponent(() => import("./Body/Rent.vue"))
   },
   props: {
     car: {
