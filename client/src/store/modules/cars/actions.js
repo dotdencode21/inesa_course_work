@@ -38,7 +38,7 @@ export default {
   },
   async deleteCar({ dispatch }, payload) {
     try {
-      const { status } = await axios.delete(`${SERVER_URL}/cars/delete`, payload);
+      const { status } = await axios.post(`${SERVER_URL}/cars/delete`, payload);
 
       if (status === 200) {
         await dispatch("getCars");
