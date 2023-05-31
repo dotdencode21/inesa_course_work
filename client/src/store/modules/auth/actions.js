@@ -11,7 +11,7 @@ export default {
         localStorage.setItem("token", token);
 
         if (localStorage.getItem("token")){
-          await dispatch("user/getCurrentUser", localStorage.getItem("token"));
+          await dispatch("auth/user/getCurrentUser", localStorage.getItem("token"));
         }
       }
     } catch (e) {

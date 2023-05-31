@@ -152,7 +152,7 @@ export default {
       return this.car.pricePerHour;
     }
   },
-  async mounted() {
+  async created() {
     try {
       await this.getCurrentUser({
         token: localStorage.getItem("token")
