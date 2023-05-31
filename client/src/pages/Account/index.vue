@@ -11,29 +11,36 @@
         Особистий кабінет
       </span>
     </div>
-    <div class="account__content">
-      <div class="account__content__info">
-        <div class="account__content__info__item">
-          <span class="account__content__info__item__label">Логін:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.username }}</span>
-        </div>
-        <div class="account__content__info__item">
-          <span class="account__content__info__item__label">Вік:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.age }}</span>
-        </div>
-        <div class="account__content__info__item">
-          <span class="account__content__info__item__label">Номер телефону:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.phoneNumber }}</span>
-        </div>
-        <div class="account__content__info__item">
-          <span class="account__content__info__item__label">Тип:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.role === "ADMIN" ? "Адміністратор" : "Користувач" }}</span>
-        </div>
-        <div class="account__content__info__item">
-          <span class="account__content__info__item__label">Кількість оренд:</span>
-          <span class="account__content__info__item__label__bold">{{ currentUser.orders?.length }}</span>
+    <div class="account__content__wrapper">
+      <div class="account__content">
+        <div class="account__content__info">
+          <div class="account__content__info__item">
+            <span class="account__content__info__item__label">Логін:</span>
+            <span class="account__content__info__item__label__bold">{{ currentUser.username }}</span>
+          </div>
+          <div class="account__content__info__item">
+            <span class="account__content__info__item__label">Вік:</span>
+            <span class="account__content__info__item__label__bold">{{ currentUser.age }}</span>
+          </div>
+          <div class="account__content__info__item">
+            <span class="account__content__info__item__label">Номер телефону:</span>
+            <span class="account__content__info__item__label__bold">{{ currentUser.phoneNumber }}</span>
+          </div>
+          <div class="account__content__info__item">
+            <span class="account__content__info__item__label">Тип:</span>
+            <span class="account__content__info__item__label__bold">{{ currentUser.role === "ADMIN" ? "Адміністратор" : "Користувач" }}</span>
+          </div>
+          <div class="account__content__info__item">
+            <span class="account__content__info__item__label">Кількість оренд:</span>
+            <span class="account__content__info__item__label__bold">{{ currentUser.orders?.length }}</span>
+          </div>
         </div>
       </div>
+      <button class="btn__sign-out" @click="signOut">
+        <span class="btn__sign-out__label">
+          Вийти з акканту
+        </span>
+      </button>
     </div>
   </div>
 </template>
@@ -71,6 +78,12 @@ export default {
     ...mapActions("user", ["getCurrentUser"]),
     backToMain() {
       this.$router.push({ path: "/" });
+    },
+    signOut() {
+      if (localStorage.getItem("token")) {
+        localStorage.removeItem("token");
+        this.backToMain();
+      }
     }
   }
 };
@@ -101,6 +114,14 @@ export default {
   color: var(--black-color);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+}
+.account__content__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 .account__content {
   width: 100%;
@@ -150,5 +171,20 @@ export default {
 }
 .account__content__info__item__label__bold {
   font-weight: 700;
+}
+.btn__sign-out {
+  width: 30em;
+  padding: 0.5em 1em;
+  background-color: var(--secondary-light-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5em;
+}
+.btn__sign-out__label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: var(--black-color);
+  letter-spacing: 0.02em;
 }
 </style>

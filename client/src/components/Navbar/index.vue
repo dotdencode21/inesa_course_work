@@ -29,7 +29,7 @@
       </span>
     </button>
     <button
-      v-else 
+      v-if="!token" 
       class="navbar__account"
       @click="goToSignIn"
     >
@@ -53,6 +53,9 @@ export default {
         "Питання",
         "Контакти"
       ];
+    },
+    token() {
+      return localStorage.getItem("token");
     }
   },
   async mounted() {

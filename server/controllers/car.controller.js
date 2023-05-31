@@ -61,11 +61,11 @@ class CarController {
 
   async deleteCar(req, res) {
     try {
-      const { carId } = req.body;
+      const { carId } = req.params;
 
-      await Car.findByIdAndDelete(carId);
-
-      return res.status(200).json({ message: "Car has been succesfully deleted" });
+      await Car.findByIdAndDelete(carId).then(() => {
+        return res.status(200).json({ message: "Car has been succesfully deleted" });
+      });
     } catch (e) {
       return res.status(500).json({ message: "Failed to delete car" });
     }

@@ -29,6 +29,6 @@ carRouter.post(
   carController.addCar
 );
 carRouter.put("/update", carController.updateCar);
-carRouter.post("/delete", carController.deleteCar);
+carRouter.delete("/:carId/delete", carController.deleteCar);
 
 module.exports = carRouter;

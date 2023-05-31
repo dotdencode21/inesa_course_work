@@ -41,8 +41,18 @@ export default {
     ...mapState("cars", ["cars"]),
     ...mapState("user", ["isAdmin"])
   },
+  async created() {
+    try {
+      await this.getCurrentUser({
+        token: localStorage.getItem("token")
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  },
   methods: {
     ...mapActions("cars", ["createCar"]),
+    ...mapActions("user", ["getCurrentUser", "updateCurrentUser"]),
     handleCreateCar() {
       this.isCreateCarAction = true;
     },

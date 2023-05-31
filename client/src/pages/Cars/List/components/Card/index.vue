@@ -79,7 +79,7 @@
         </button>
       </div>
       <div 
-        v-if="isAdmin"
+        v-if="isAdmin && token"
         class="card__footer__admin-btns"
       >
         <button 
@@ -133,6 +133,9 @@ export default {
   },
   computed: {
     ...mapState("user", ["isAdmin", "currentUser"]),
+    token() {
+      return localStorage.getItem("token");
+    },
     name() {
       return this.car.name;
     },
@@ -152,17 +155,8 @@ export default {
       return this.car.pricePerHour;
     }
   },
-  async created() {
-    try {
-      await this.getCurrentUser({
-        token: localStorage.getItem("token")
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  },
   methods: {
-    ...mapActions("user", ["getCurrentUser", "updateCurrentUser"]),
+    ...mapActions("user", ["updateCurrentUser"]),
     ...mapActions("cars", ["updateCar", "deleteCar"]),
     toggleShowAdminActions() {
       this.showAdminActions = !this.showAdminActions;

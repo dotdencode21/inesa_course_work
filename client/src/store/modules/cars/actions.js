@@ -36,11 +36,14 @@ export default {
       console.error(e);
     }
   },
-  async deleteCar({ dispatch }, payload) {
+  async deleteCar({ state, commit, dispatch }, payload) {
+    const { carId } = payload;
+
     try {
-      const { status } = await axios.post(`${SERVER_URL}/cars/delete`, payload);
+      const { status } = await axios.delete(`${SERVER_URL}/cars/${carId}/delete`);
 
       if (status === 200) {
+        commit("setCars", [...state.cars.filter(car => car._id !== carId)]);
         await dispatch("getCars");
       }
     } catch (e) {
