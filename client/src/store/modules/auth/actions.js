@@ -3,12 +3,16 @@ import axios from "axios";
 import { SERVER_URL } from "@/constants";
 
 export default {
-  async signIn(_, payload) {
+  async signIn({ dispatch }, payload) {
     try {
       const { data: { token } } = await axios.post(`${SERVER_URL}/auth/sign-in`, payload);      
 
       if (token) {
         localStorage.setItem("token", token);
+
+        if (localStorage.getItem("token")){
+          await dispatch("user/getCurrentUser", localStorage.getItem("token"));
+        }
       }
     } catch (e) {
       console.error(e);
